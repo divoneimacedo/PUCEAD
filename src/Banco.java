@@ -11,6 +11,36 @@ public class Banco {
 		// inicializando o arrayList
 		clientes = new ArrayList<Cliente>();
 	}
+	
+	public void Operacoes(Cliente cliente) {
+
+		double valorDeposito;
+		double valorSaque;
+
+		String retornoOperacoes;
+		System.out.println("Cliente " + cliente.getNome() + " - OPERACOES");
+		System.out.print("** Entre com o valor do depósito: R$ ");
+		valorDeposito = this.ler.nextDouble();
+		this.ler.reset();
+		retornoOperacoes = cliente.opera("deposito", valorDeposito);
+		if (retornoOperacoes.length() > 0) {
+			System.out.println("Falha ao depositar falha: " + retornoOperacoes);
+		}
+
+		System.out.print("** Entre com o valor do saque: R$ ");
+		valorSaque = this.ler.nextDouble();
+		this.ler.reset();
+		retornoOperacoes = cliente.opera("saque", valorSaque);
+
+		if (retornoOperacoes.length() > 0) {
+			System.out.println("Falha ao efetuar o saque falha: " + retornoOperacoes);
+		}
+		// this.ler.close();
+	}
+	
+	public void finalize() {
+		this.ler.close();
+	}
 
 	public static void main(String[] args) {
 		// estanciando classe Banco
@@ -41,33 +71,11 @@ public class Banco {
 			dadosConta = cliente.getConta();
 			System.out.println(dadosConta);
 		}
-
+		
+		banco.finalize();
+		
 	}
 
-	public void Operacoes(Cliente cliente) {
-
-		double valorDeposito;
-		double valorSaque;
-
-		String retornoOperacoes;
-		System.out.println("Cliente " + cliente.getNome() + " - OPERACOES");
-		System.out.print("** Entre com o valor do depósito: R$ ");
-		valorDeposito = this.ler.nextDouble();
-		this.ler.reset();
-		retornoOperacoes = cliente.opera("deposito", valorDeposito);
-		if (retornoOperacoes.length() > 0) {
-			System.out.println("Falha ao depositar falha: " + retornoOperacoes);
-		}
-
-		System.out.print("** Entre com o valor do saque: R$ ");
-		valorSaque = this.ler.nextDouble();
-		this.ler.reset();
-		retornoOperacoes = cliente.opera("saque", valorSaque);
-
-		if (retornoOperacoes.length() > 0) {
-			System.out.println("Falha ao efetuar o saque falha: " + retornoOperacoes);
-		}
-		// this.ler.close();
-	}
+	
 
 }
