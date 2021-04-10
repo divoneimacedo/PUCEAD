@@ -1,3 +1,5 @@
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class ContaCorrente {
 	private int numero;
@@ -39,14 +41,18 @@ public class ContaCorrente {
 	}
 
 	public double verificaSaldo() {
-		return this.saldo;
+		if(this.saldo>=0)
+			return this.saldo;
+		else return 0;
+		
 	}
 
 	public String imprimiConta() {
+		NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt","BR"));
 		// imprimir conta numero;
 		String retorno = "Numero da conta: " + this.numero + "\n";
 		retorno += "Cliente:  " + this.cliente.getNome() + "\n";
-		retorno += "Saldo:  " + this.verificaSaldo() + "\n";
+		retorno += "Saldo: " + nf.format(this.verificaSaldo()) + "\n";
 		return retorno;
 	}
 

@@ -25,7 +25,7 @@ public class Banco {
 		banco.clientes.add(new Cliente("Jose", 1234));
 
 		// adicionando cliente Joao
-		banco.clientes.add(new Cliente("Joao", 1234));
+		banco.clientes.add(new Cliente("Joao", 12345));
 
 		System.out.println("*** Banco " + banco.nome + " - OPERACOES ***");
 
